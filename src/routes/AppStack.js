@@ -1,5 +1,4 @@
 //criação das rotas do app
-
 import React from "react";
 import { View, Image } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -15,6 +14,7 @@ import { FilterMsg } from "../pages/FilterMsg";
 import { SaveContact } from "../pages/chat/SaveContact";
 import { TransferContact } from "../pages/chat/TransferContact";
 import { FinishScreen } from "../pages/chat/FinishScreen";
+import { TesteScreen } from "../pages/TesteScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -31,6 +31,7 @@ export function AppStack() {
       <Stack.Screen name="NewChat" component={NewChat} />
       <Stack.Screen name="Mensagens" component={HomeScreen}  />
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
+      <Stack.Screen name="TesteScreen" component={TesteScreen} options={{headerShown: false}}/>
       <Stack.Screen
         name="Chat"
         component={Chat}
@@ -63,7 +64,6 @@ export function AppStack() {
 function TabRoute({ navigation }) {
   return (
     <>
-      {/* <View style={{ flex: 1 }}>  VIEW DO BOTÃO MAIS PARA FICAR ALINHADO NO CENTRO*/}
       <Tab.Navigator
         screenOptions={{
           //screenOpitions para adicionar stilos na Tabbottom

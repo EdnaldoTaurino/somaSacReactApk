@@ -21,15 +21,42 @@ vamos inicar o build:
     ele cria um package name com.seunomenoexpo.nomedoapp na convensão o package name sempre começa com com.ect..
     gostaria de gerar uma nova kaystore?: Y:  uma chave assinalada para gerar o build quando for subir uma att o google ver essa chave e autoriza
     ele vai iniciar o build
+apos isso vamos criar o apk do projeto
 
-apk: https://docs.expo.dev/build-reference/apk/
-    é como um pacote que vc baixa em seu celular, é o arquivo final do app
-    fica disponivel para download no google play store
+CRIANDO O APK:
+npm install -g eas-cli
+eas build:configure
+
+escolha a opção all
+
+mude o app.jason para:
+	"build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      }
+    },
+
+rode o comando: eas build -p android --profile preview
+QUANDO QUISER O FORMATO AAB RODE O COMANDO: eas build --platform android
+
+apk: https://docs.expo.dev/build-reference/apk/ 
+	https://docs.expo.dev/eas-update/runtime-versions/#nativeversion-runtime-version-policy
+
     ir no arquivo eas.jason que é criando apos fazer o build explicado acima
         "android": {
         "buildType": "apk"
       }
-      passar esse comando acima la no preview este comando esta na documentação : https://docs.expo.dev/build-reference/apk/
+      apos isso ir no app.jason e em android 
+	"android": {
+      "versionCode": 1
+    }
+	depois la em cima do app.jason em expo mesmo na "version": "1.0.1", mudar para 1.0.1
+
       apos isso voltar ao cmd e rodar novamente o comando: 
         eas build --platform android
         ele vai gerar o build com formato apk.
@@ -73,8 +100,6 @@ Atualizando o app: https://docs.expo.dev/eas-update/runtime-versions/#nativevers
     e ai roda o codigo: eas build --platform android
 
 
-
-
 Para atualizar o app manualmente:
     1. Vá até o menu lateral da tela principal do Expo CLI
     2. Clique em `Publish`
@@ -88,6 +113,3 @@ Para atualizar o app manualmente:
     10. Abra o aplicativo do Expo no seu dispositivo móvel
     11. Cole o link copiado e pressione enter
     12. Seu dispositivo móvel vai buscar as atualizações automaticamente
-
-
-
