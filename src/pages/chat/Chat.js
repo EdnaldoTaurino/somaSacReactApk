@@ -290,8 +290,6 @@ export function Chat({ route, navigation }) {
           </View>
           </View>
         </Modal>
-
-
       </View>
     </>
   );

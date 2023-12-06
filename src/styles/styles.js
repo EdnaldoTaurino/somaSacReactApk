@@ -730,24 +730,48 @@ const styles = StyleSheet.create({
   messagingscreen: {
     flex: 1,
   },
-  messaginginputContainer: {
-    width: "100%",
-    minHeight: 100,
-    backgroundColor: "white",
-    paddingVertical: 30,
-    paddingHorizontal: 15,
-    justifyContent: "center",
-    flexDirection: "row",
-  },
-  messaginginput: {
+  // messaginginputContainer: {
+  //   width: "100%",
+  //   minHeight: 100,
+  //   backgroundColor: "white",
+  //   paddingVertical: 30,
+  //   paddingHorizontal: 15,
+  //   justifyContent: "center",
+  //   flexDirection: "row",
+  // },
+  // messaginginput: {
+  //   borderWidth: 1,
+  //   padding: 15,
+  //   flex: 1,
+  //   marginRight: 10,
+  //   borderRadius: 20,
+  // },
+
+  inputContainer: {
+    width: '95%', 
+    minHeight: 85,
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
     borderWidth: 1,
-    padding: 15,
-    flex: 1,
-    marginRight: 10,
+    borderColor: '#ccc',
     borderRadius: 20,
+    marginBottom: '2%',
+    alignSelf: 'center', // Centralizar horizontalmente
   },
+  messagingInput: {
+    flex: 1,
+    marginLeft: 10,
+  },
+  icon: {
+    marginLeft: 10, 
+    marginRight: 10, 
+  },
+
+
   messagingbuttonContainer: {
     width: "30%",
+    minHeight: 50,
     backgroundColor: "#fb9124",
     alignItems: "center",
     justifyContent: "center",
@@ -838,7 +862,7 @@ const styles = StyleSheet.create({
     paddingRight: 4,
   },
   ctime: {
-    opacity: 0.5,
+    opacity: 0.8,
   },
 
   /////////////////////////////////////////////////////////////////////////
@@ -882,6 +906,13 @@ const styles = StyleSheet.create({
   footerText: {
     fontSize: 16,
   },
+
+
+  //------------------------------------------------- testando
+
+
+ 
+  
 });
 
 export { styles }; // só asism para outras paginas aceitarem o estilo do css sem isso não funciona.

@@ -1,16 +1,38 @@
 import { useRef, useState, useEffect } from "react";
-import { View, TextInput, Text, TouchableOpacity } from "react-native";
+import { View, TextInput, Text, TouchableOpacity} from "react-native";
 // utils
 import uuidv4 from "../../utils/uuidv4";
 // Styles
 import { styles } from "../../styles/styles";
 import { Button } from "react-native-web";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function ChatMessageInput({ disabled, conversationId, onSend }) {
   const fileInputRef = useRef(null);
   const [file, setFile] = useState(null);
   const [audio, setAudio] = useState(null);
   const [message, setMessage] = useState("");
+
+  const showIcon = () => {
+    if (message === "") {
+      return(
+      <View style={{flexDirection: "row"}}>
+        <TouchableOpacity>
+          <Icon name="code" size={20} color="#888" style={styles.icon} />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Icon name="code" size={20} color="#888" style={styles.icon} />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Icon name="code" size={20} color="#888" style={styles.icon} />
+        </TouchableOpacity>
+      </View>
+      );       
+    }
+    console.log('showicon funcionou');
+    return null;
+  }
+
   const handleFileChange = (e) => {
     if (e.removeAll) {
       fileInputRef.current.value = "";
@@ -94,12 +116,19 @@ export default function ChatMessageInput({ disabled, conversationId, onSend }) {
   if (disabled) return null;
 
   return (
-    <View style={styles.messaginginputContainer}>
+    <View style={styles.inputContainer}>
+      <TouchableOpacity>
+        <Icon name="smile-o" size={20} color="#888" style={styles.iconEmoji} />
+      </TouchableOpacity>
+      
       <TextInput
         value={message}
-        style={styles.messaginginput}
+        style={styles.messagingInput}
         onChangeText={(value) => setMessage(value)}
       />
+      {showIcon()}
+      {/* <Icon name="photo" size={20} color="#888" style={styles.icon} /> */}
+
       <TouchableOpacity style={styles.messagingbuttonContainer} onPress={handleSend} activeOpacity={0.5}>
         <View>
           <Text style={{ color: "#f2f0f1", fontSize: 20, fontWeight: "bold" }} >Enviar</Text>

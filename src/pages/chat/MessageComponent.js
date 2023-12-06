@@ -13,7 +13,7 @@ export default function MessageComponent({ item }) {
         style={
           status
             ? styles.mmessageWrapper
-            : [styles.mmessageWrapper, { alignItems: "flex-end" }]
+            : [styles.mmessageWrapper, { alignItems: "flex-end"}]
         }
       >
         <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -31,11 +31,12 @@ export default function MessageComponent({ item }) {
             }
           >
             <Text>{item.text}</Text>
+            <Text style={{ opacity: 0.3, fontSize: 12 }}>
+              {moment(item.timestamp).format("DD/MM/YY - HH:mm")}
+              {/* {moment(item.timestamp).format("DD/MM/YY - HH:mm:ss")} */}
+            </Text>
           </View>
         </View>
-        <Text style={{ marginLeft: 40 }}>
-          {moment(item.timestamp).format("DD/MM/YY - HH:mm:ss")}
-        </Text>
       </View>
     </View>
   );
