@@ -1,0 +1,112 @@
+Documentação - API SOMA SAC
+Overview
+Existem dois protocolos de comunicação que devem ser implementados pela aplicação cliente para interagir com o servidor. São eles:
+
+HTTP: Utilizado para todas as interações onde o cliente envia dados para o servidor. Alguns exemplos são: requisições para login, visualizar atendimentos, criar grupos, configurar troncos... etc.
+socket.io: Utilizado quando o servidor precisa enviar algum dado para o cliente, sem que o cliente faça uma requisição anteriormente. Por exemplo: recebimento de mensagens em tempo real, atualizações sobre o status atual dos troncos, etc.
+Autenticação
+Antes de qualquer comunicação ocorrer, o cliente deve antes se autenticar com o servidor (com exceção de algumas rotas HTTP específicas, como as de integração com serviços externos). Existe um único fluxo de autenticação, mas a informação retornada deve ser utilizada em dois lugares. Segue os detalhes:
+Rotas de login/logout
+Essa rota faz o login do usuário no sistema. Em caso de sucesso, retorna o user que acabou de logar e o token que deverá ser utilizado para autenticação.
+Endpoint: POST /api/login
+{
+    "email": "master@datafort.com.br",
+    "password": "aB345678",
+    "forceLogout": false
+}
+​
+Campos: 
+email e password: Credenciais do usuário.
+forceLogout: Deve ser enviado false na primeira requisição.
+Caso o usuário já esteja logado no sistema, será retornado um erro sessionOngoing.
+Esse erro deve ser utilizado para informar ao usuário que ele já tem uma sessão aberta em outro lugar, e caso proceder com o login, a sessão anterior será encerrada.
+Enviar como true na próxima requisição caso o usuário aceite essa proposição.
+Exemplo de resposta:
+{
+    "user": {
+        "online": false,
+        "pendingDisconnect": false,
+        "onBreak": false,
+        "ongoingChatCount": 0,
+        "_id": "5e34948a00db7d0c0ca13a44",
+        "chatCount": 0,
+        "name": "Master",
+        "email": "master@datafort.com.br",
+        "cpf": "123.456.789-00",
+        "phone": "(83) 9 1234-5678",
+        "acl": {
+            "profile": "master"
+        },
+        "companyId": "5e334189956ea70e965fef66",
+        "__v": 6,
+        "quickMessages": [],
+        "contacts": []
+    },
+    "token": "376d9b2ddaf4dc1dd9c78b138f2948ad6fa2267c317b8922c5ecd0481970c5241c0e16a7253a37484802d22f933e8ccfc6bd9052d457df4c338cf174798427cf"
+}
+​
+Para fazer o logout do usuário:
+Endpoint: GET /api/logout
+Utilização do token
+Após o login, o cliente terá um token que deve utilizar para se identificar sempre que se comunicar com o servidor. Existem dois momentos em que ele deve ser utilizado:
+Para requisições HTTP:
+O token deve ser passado via o cabeçalho HTTP Authorization nas requisições, no formato Bearer [TOKEN].
+Para estabelecer a conexão socket.io:
+Ao se conectar via socket.io com o servidor, o cliente deverá fornecer o token via o campo token no parâmetro auth da chamada de conexão:
+const socket = io.connect('etc...', {
+    ..etc,
+    auth: { token: '[TOKEN]' },
+});
+​
+Lista de Chats
+Endpoint: POST /api/chats/my
+Payload:  {"companyId": COMPANY_ID}
+Resultado do endpoint:
+[
+    {
+        "_id": "6548f4ba3d6700e999160ae1",
+        "companyId": "5dfa1c8dca5a8f2d2c431afb",
+        "serviceId": "64d398780bb1777d336604e0",
+        "sender": {
+            "name": "wil",
+            "uid": "+5511920002081",
+            "phone": "+5511920002081"
+        },
+        "log": [
+            {
+                "eventType": "statusChange",
+                "newStatus": 0,
+                "timestamp": "2023-11-06T14:14:18.651Z"
+            },
+            {
+                "eventType": "assignment",
+                "userId": "6529a1bfa7d2c5b3a904cb12",
+                "userName": "Edy",
+                "timestamp": "2023-11-06T14:14:18.655Z"
+            },
+        ],
+        "status": 3,
+        "time": {
+            "started": "2023-11-06T14:14:18.652Z",
+            "handled": "2023-11-06T14:44:19.617Z",
+            "pending": "2023-11-06T14:44:15.452Z"
+        },
+        "unreadMessageCount": 0,
+        "canReply": true,
+        "messages": [
+            {
+                "text": "OLa com vai",
+                "uid": "wamid.HBgNNTUxMTkyMDAwMjA4MRUCABIYFjNFQjA0NDBCMjdDMDk2MTFFNzQ2QTUA",
+                "timestamp": "2023-11-06T14:14:37.000Z"
+            }
+        ],
+        "tags": [],
+        "createdAt": "2023-11-06T14:14:18.653Z",
+        "updatedAt": "2023-11-06T14:44:19.619Z",
+        "agentId": "6512e147fc05597a936d5155",
+        "serviceDetail": {
+            "description": "+55(11)2082-6237",
+            "type": "CloudApi"
+        }
+    }
+]

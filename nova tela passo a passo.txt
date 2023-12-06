@@ -1,0 +1,59 @@
+- cria novo arquivo .js
+- cola isso:
+
+import React from "react";
+import { View, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { styles } from "../styles/styles";
+import { useAuth } from "../contexts/auth";
+
+export function Chat() {
+  const navigation = useNavigation();
+  const { authData } = useAuth();
+  return (
+    <View style={styles.container2}>
+      <Text style={styles.title}>NOVA TELA</Text>
+      <Text>{authData?.user.name} </Text>
+    </View>
+  );
+}
+
+- adicione em AppStack.js:
+    <Stack.Screen name="Chat" component={Chat} />
+  ou assim sem header:
+    <Stack.Screen name="Chat" component={Chat} options={{headerShown: false}} />
+
+- no botão que quer chamar essa tela adicione o onPress:
+    onPress={() => navigation.navigate("NOVATELA")}
+
+//---------------------------------------------------------------------
+
+importando data e outras coisas e funções para a nova tela:
+  navigation.navigate("SaveContact", {data}); na tela onde temos a chamada do data da api quando vamos para proxima tela
+  adicionamos esse comando para que ele export todos os dados da api que chamamos de data para proxima tela:
+
+import React, { useEffect, useLayoutEffect, useState } from "react";
+const { data } = route.params;
+
+// uselayout fica acima logo abaixo das variaveis const
+useLayoutEffect(() => { 
+  navigation.setOptions({
+    headerTitle: () => (
+      <View style={{flexDirection:"row"}}>
+        <Image
+        source={require('../../../assets/userIconClick.png')}
+        style={{ width: 45, height: 45, borderRadius: 50, borderWidth: 2, borderColor: 'orange'}}
+              />
+          <Text style={{fontSize: 18, marginTop: 10, marginLeft: 6}}>{data.sender.name}</Text>
+      </View>
+    ),
+  });
+});
+
+export function NOMEDATELA QUE CRECEBE O DATA({route}) adiciona o route dentro da função principal do app
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+-------- app.jason
+
+{
+  "expo": {
+    "name": "gerador",
+    "slug": "gerador",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",  <<<<< // adicionar logo tela iniciar do app
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {  // mudar o caminho para o caminho da logo somasac
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"  <<<<<<<< // background do somasac
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
+
+///////////////////////////////////////////////////////////////
+------- package.json
+
+{
+  "name": "gerador",
+  "version": "1.0.0",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",  <<<<<<<<<< // script para iniciar o projeto
+    "android": "expo start --android",<<<<<<< // script para iniciar o projeto no android
+    "ios": "expo start --ios", <<<<<<<<<<// script para iniciar o projeto ios
+    "web": "expo start --web" <<<<<<<<<// script para iniciar o projeto web
+  },
+  "dependencies": {   <<<<<<<<<<// depencias normal
+    "expo": "~49.0.13",
+    "expo-status-bar": "~1.6.0",
+    "react": "18.2.0",
+    "react-native": "0.72.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
+}

@@ -1,0 +1,16 @@
+Instale a biblioteca "react-native-vector-icons" no seu projeto
+	npm install react-native-vector-icons
+
+Importe os ícones de olho da biblioteca no seu arquivo:
+
+	import Icon from "react-native-vector-icons/FontAwesome"; // Você pode escolher outros conjuntos de ícones se preferir
+
+
+// ------------------------------------- Socket.io -------------------------------------
+https://www.youtube.com/watch?v=KpepWBUyyho
+
+
+yarn add socket.io-client react-native-gifted-chat
+	// gifted-chatadiciona tudo que um app de mensagem precisa ter de uma vez estilos tudo.
+
+

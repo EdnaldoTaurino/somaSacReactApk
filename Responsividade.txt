@@ -1,0 +1,19 @@
+flexShrink: 1 em todo container para todos encolherem e ocupar o mesmo espaço, ver se precisa do flexdirection
+
+no caso essa propriedade aplicada em um container diminui apenas ele
+
+//---------------------------------
+
+responsiveText: {
+    fontSize: windowWidth * 0.04 // Define o tamanho da fonte com base na largura da tela
+  },
+  responsiveBox: {
+    width: windowWidth * 0.9,  
+    height: windowHeight * 0.1, 
+    top: windowHeight * 0.01
+    qualquer coisa: windowHeight
+  },
+
+  e dentro das views adicionar top, right left, qualquer um a gosto dentro de {}
+   <View style={[styles.responsiveBox, {top:-10}]}>
+        <Text style={[styles.chatTitle, {left: 1}]}> Nova conversa </Text>

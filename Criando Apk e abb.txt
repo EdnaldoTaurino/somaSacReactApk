@@ -1,0 +1,93 @@
+https://www.youtube.com/watch?v=bIMk6iaPOBE
+
+Documentação criar apk ou aab (app bandle) expo
+
+ir no site expo: https://expo.dev/ cria uma conta sign Up
+
+dentro da Documentação do expo pesquisar eas ( expo aplication service ) https://docs.expo.dev/submit/android/
+    abir o cmd dentro da pasta do seu projeto sempre e digtar o comando: npm install -g eas-cli
+    
+depois va para : https://docs.expo.dev/build/introduction/ apenas clicando no campo de pesquisa do expo
+eas build tem esse link
+    no cmd digite: eas login
+    coloque seu login e senha
+    agora ja podemos rodar nosso build do projeto
+
+* Estando no windows ou linux so consegue gerar build do android para o IOS precisa de um mac
+
+vamos inicar o build:
+    eas build --platform android
+    ele vai perguntar se gostaria de deixar criado dentro do expo na conta esse projeto: Y
+    ele cria um package name com.seunomenoexpo.nomedoapp na convensão o package name sempre começa com com.ect..
+    gostaria de gerar uma nova kaystore?: Y:  uma chave assinalada para gerar o build quando for subir uma att o google ver essa chave e autoriza
+    ele vai iniciar o build
+
+apk: https://docs.expo.dev/build-reference/apk/
+    é como um pacote que vc baixa em seu celular, é o arquivo final do app
+    fica disponivel para download no google play store
+    ir no arquivo eas.jason que é criando apos fazer o build explicado acima
+        "android": {
+        "buildType": "apk"
+      }
+      passar esse comando acima la no preview este comando esta na documentação : https://docs.expo.dev/build-reference/apk/
+      apos isso voltar ao cmd e rodar novamente o comando: 
+        eas build --platform android
+        ele vai gerar o build com formato apk.
+
+
+
+aab:
+    é o formato mais novo, é o formato padrão do android 9+
+    ele é usado pra distribuir apps direto pelo google play store sem necessidade de ter um aplicativo separado
+    é o arquivo final do app, é maior que o apk porem é menor que o ipa
+    para testar o build do android basta ir no google play store e procurar pelo nome do seu aplicativo e instalar
+    para verificar os builds: 
+    ir no site do expo: https://expo.dev/accounts/projects
+    e clique em "manage project"
+    depois clique em "android/ios"
+    você vai ver todos os builds que foram feitos
+
+para testar o APK:
+ir no site do expo: https://expo.dev/accounts/projects
+clicar em manage projects
+clicar em android
+clicar em latest release
+clicar em download .apk
+vai baixar o apk
+colocar no smartphone e instalar
+
+para testar o AAB:
+ir no site do expo: https://expo.dev/accounts/projects
+clicar em manage projects
+clicar em android
+clicar em latest release
+clicar em download .aab
+vai baixar o aab
+colocar no smartphone e instalar
+
+
+Atualizando o app: https://docs.expo.dev/eas-update/runtime-versions/#nativeversion-runtime-version-policy
+    para atualizar o app basta apenas subir uma versao nova ele vai automaticamente ser atualizado pelo usuario
+    quando gera o build do app ele cria um arquivo chamado eas.jason dentro desse arquivo na parte onde tem "anroid"
+    "versionCode": 2, e ir la em cima em expo:{ name, slug} mudar version: para 1.0.2 por exemplo ou 1.0.3 
+    e ai roda o codigo: eas build --platform android
+
+
+
+
+Para atualizar o app manualmente:
+    1. Vá até o menu lateral da tela principal do Expo CLI
+    2. Clique em `Publish`
+    3. Escolha a opção `Upload to the Expo servers`
+    4. Depois de carregar, clique em `Submit for review`
+    5. Em seguida, clique em `Next`, preencha as informações necessárias (nome, descrição) e clique
+    6. Após isso, clique em `Create Release`
+    7. O processo levará alguns minutos para terminar
+    8. Uma vez criado, clique em `View in Expo`
+    9. Copie o link que aparece na tela
+    10. Abra o aplicativo do Expo no seu dispositivo móvel
+    11. Cole o link copiado e pressione enter
+    12. Seu dispositivo móvel vai buscar as atualizações automaticamente
+
+
+
